@@ -33,7 +33,7 @@ describe('/api/movies tests', () => {
 	describe('/POST movie', () => {
 		it('it should POST a movie', (done) => {
 			const movie = {
-				title: 'Test Movie',
+				title: 'Test Movie2',
 				director_id: '5b6737e1a2d1222864f7b5e4',
 				category: 'Komedi',
 				country: 'Türkiye',
@@ -79,5 +79,50 @@ describe('/api/movies tests', () => {
 				});
 		});
 	});
+	
+
+	describe('/PUT/:movie_id movie', () => {
+		it('it should UPDATE a movie given by id', (done) => {
+			const movie = {
+				title: 'Test2',
+				director_id: '5b6737e1a2d1222864f7b5e4',
+				category: 'Suç',
+				country: 'Fransa',
+				year: 1970,
+				imdb_score: 9
+			};
+
+			chai.request(server)
+				.put('/api/movies/'+ movieId)
+				.send(movie)
+				.set('x-access-token', token)
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('title').eql(movie.title);
+					res.body.should.have.property('director_id').eql(movie.director_id);
+					res.body.should.have.property('category').eql(movie.category);
+					res.body.should.have.property('country').eql(movie.country);
+					res.body.should.have.property('year').eql(movie.year);
+					res.body.should.have.property('imdb_score').eql(movie.imdb_score);
+
+					done();
+				});
+		});
+	});
+
+	describe('/DELETE/:movie_id movie', () => {
+		it('it should DELETE a movie given by id', (done) => {
+			chai.request(server)
+				.delete('/api/movies/'+ movieId)
+				.set('x-access-token', token)
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.should.be.a('object');					
+					done();
+				});
+		});
+	});
+	
 
 });

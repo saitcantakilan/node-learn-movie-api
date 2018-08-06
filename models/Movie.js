@@ -5,13 +5,27 @@ const MovieSchema = new Schema({
     director_id: Schema.Types.ObjectId,
     title:{
         type: String,
-        required: true,
+        required: [true, '`{PATH}` alanı zorunludur.'],
+        maxlength: [15,'`{PATH}` alanı (`{VALUE}`) , ({MAXLENGTH}) karakterden küçük olmalıdır.'],
+        minlength: 1
 
     },
-    category: String,
-    country: String,
+    category: {
+       type: String,
+       maxlength: 30,
+       minlength: 1
+    },
+    country: {
+       type: String,
+       maxlength: 30,
+       minlength: 1
+    },
     year: Number,
-    imdb_score: Number,
+    imdb_score: {
+        type: Number,
+        max: 10,
+        min: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now

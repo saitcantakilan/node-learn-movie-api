@@ -60,5 +60,4 @@ describe('/api/movies tests', () => {
 		});
 	});
 
-
 });

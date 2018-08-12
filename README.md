@@ -1,3 +1,5 @@
+[![Build status](https://travis-ci.com/saitcantakilan/node-learn-movie-api.svg)](https://travis-ci.com/saitcantakilan/node-learn-movie-api/)
+
 # node-learn-movie-api
 Node.JS Öğreniyorum - Movie API
 Express ve MongoDB ile Restful API Geliştirme Projesi
